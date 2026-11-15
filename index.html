@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجرك العصري - التصميم الثاني</title>
+    <style>
+        :root {
+            --accent-color: #6366f1; /* لون موف عصري وفخم */
+            --dark-color: #0f172a;
+            --light-bg: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; }
+        body { background-color: var(--light-bg); color: var(--dark-color); }
+
+        /* 1. البانر الإعلاني في أعلى الشاشة (موضع في تعليق) */
+        <!-- [BANNER_START] -->
+        .promo-banner {
+            background: linear-gradient(90deg, #4f46e5, #9333ea);
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .promo-banner a { color: #ffd700; text-decoration: none; margin-right: 5px; }
+        <!-- [BANNER_END] -->
+
+        /* الهيدر الفخم */
+        header {
+            background: #ffffff;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header h1 { font-size: 20px; color: var(--dark-color); font-weight: 800; }
+        .cart-badge {
+            background: var(--accent-color);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        /* المحتوى الرئيسي */
+        .main-container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        
+        /* شريط التصنيفات السريعة */
+        .categories-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        .cat-btn {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            white-space: nowrap;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--dark-color);
+            color: #fff;
+            border-color: var(--dark-color);
+        }
+
+        /* شبكة المنتجات بتصميم عصري */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        .img-wrapper { position: relative; width: 100%; height: 220px; background: #f1f5f9; }
+        .product-img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .product-content { padding: 18px; }
+        .product-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #1e293b; }
+        .product-price { color: var(--accent-color); font-weight: 800; font-size: 17px; margin-bottom: 15px; }
+        
+        .buy-btn {
+            width: 100%;
+            background: #f8fafc;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .buy-btn:hover {
+            background: var(--accent-color);
+            color: #fff;
+        }
+
+        /* سلة الطلبات العصرية */
+        .checkout-box {
+            margin-top: 50px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .cart-list { list-style: none; margin: 15px 0; }
+        .cart-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-color);
+            font-size: 15px;
+        }
+        .whatsapp-submit-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: background 0.2s;
+        }
+        .whatsapp-submit-btn:hover { background: #20ba5a; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. البانر الإعلاني (في تعليق، يمكنك تفعيله أو حذفه بسهولة) -->
+    <!-- [BANNER_START] 
+    <div class="promo-banner">
+        <span>🔥 هل تمتلك متجراً وتود الحصول على موقع مجاني مثله؟</span>
+        <a href="https://orcax0.github.io/orcac-site/" target="_blank">اضغط هنا للتفاصيل!<a>
+    </div>
+     [BANNER_END] -->
+
+    <header>
+        <h1>متجر الأناقة</h1>
+        <button class="cart-badge" onclick="document.getElementById('checkout-section').scrollIntoView({behavior: 'smooth'})">
+            🛒 سلة الشراء (<span id="cart-counter">0</span>)
+        </button>
+    </header>
+
+    <div class="main-container">
+        
+        <!-- شريط التصنيفات -->
+        <div class="categories-bar">
+            <button class="cat-btn active">الكل</button>
+            <button class="cat-btn">إلكترونيات</button>
+            <button class="cat-btn">أكسسوارات</button>
+            <button class="cat-btn">عروض خاصة</button>
+        </div>
+
+        <!-- شبكة المنتجات -->
+        <div class="products-grid" id="dynamic-products">
+            <!-- المنتجات تُحقن هنا ديناميكياً من كائنات الجافاسكريبت -->
+        </div>
+
+        <!-- قسم السلة وإنهاء الطلب -->
+        <div class="checkout-box" id="checkout-section">
+            <h3 style="font-size: 18px; font-weight: 700; color: #1e293b;">ملخص طلباتك</h3>
+            <ul class="cart-list" id="cart-items-container">
+                <li style="color: #94a3b8;">سلة التسوق فارغة حالياً...</li>
+            </ul>
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 20px; color: #0f172a;">
+                الإجمالي النهائي: <span id="final-total">0</span> ج.م
+            </div>
+            <button class="whatsapp-submit-btn" onclick="sendOrderWhatsApp()">تأكيد وإرسال الطلب عبر الواتساب 📱</button>
+        </div>
+    </div>
+
+    <script>
+        // =========================================================================
+        // 3. رقم الواتساب الخاص بالمتجر (قابل للتعديل بسهولة لأي عميل)
+        // =========================================================================
+        const STORE_PHONE = "201063924520";
+
+        // =========================================================================
+        // 2. إدارة الكائنات (المنتجات): أضف أو عدل بسهولة تامة بشوية كتابة بسيطة!
+        // =========================================================================
+        const storeProducts = [
+            {
+                id: 1,
+                name: "سماعة ايربودز برو التميت",
+                price: 450,
+                image: "https://via.placeholder.com/300x300?text=Airpods"
+            },
+            {
+                id: 2,
+                name: "ساعة ذكية Ultra رياضية",
+                price: 750,
+                image: "https://via.placeholder.com/300x300?text=Smart+Watch"
+            },
+            {
+                id: 3,
+                name: "عدسة إضاءة تيك توك وريلز",
+                price: 300,
+                image: "https://via.placeholder.com/300x300?text=Ring+Light"
+            },
+            {
+                id: 4,
+                name: "حامل هاتف مغناطيسي للسيارة",
+                price: 200,
+                image: "https://via.placeholder.com/300x300?text=Car+Holder"
+            }
+        ];
+
+        let shoppingCart = [];
+
+        // حقن المنتجات في التصميم أوتوماتيك
+        function loadProducts() {
+            const grid = document.getElementById('dynamic-products');
+            grid.innerHTML = "";
+            
+            storeProducts.forEach(item => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <div class="img-wrapper">
+                            <img src="${item.image}" alt="${item.name}" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-title">${item.name}</div>
+                            <div class="product-price">${item.price} ج.م</div>
+                            <button class="buy-btn" onclick="addItemToCart(${item.id})">إضافة للسلة</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addItemToCart(id) {
+            const prod = storeProducts.find(p => p.id === id);
+            shoppingCart.push(prod);
+            refreshCartUI();
+        }
+
+        function refreshCartUI() {
+            document.getElementById('cart-counter').innerText = shoppingCart.length;
+            const container = document.getElementById('cart-items-container');
+            
+            if (shoppingCart.length === 0) {
+                container.innerHTML = `<li style="color: #94a3b8;">سلة التسوق فارغة حالياً...</li>`;
+                document.getElementById('final-total').innerText = "0";
+                return;
+            }
+
+            container.innerHTML = "";
+            let sum = 0;
+            shoppingCart.forEach((product, idx) => {
+                sum += product.price;
+                container.innerHTML += `
+                    <li>
+                        <span>${product.name}</span>
+                        <span style="font-weight: 700;">${product.price} ج.م</span>
+                    </li>
+                `;
+            });
+            document.getElementById('final-total').innerText = sum;
+        }
+
+        // إرسال رسالة الواتساب المنسقة
+        function sendOrderWhatsApp() {
+            if (shoppingCart.length === 0) {
+                alert("عذراً، يرجى اختيار منتج واحد على الأقل أولاً.");
+                return;
+            }
+
+            let textMsg = "مرحباً، أود طلب المنتجات التالية:%0A";
+            let grandTotal = 0;
+            
+            shoppingCart.forEach((prod, i) => {
+                textMsg += `${i + 1} - ${prod.name} (${prod.price} ج.م)%0A`;
+                grandTotal += prod.price;
+            });
+            
+            textMsg += `%0A*الإجمالي الكلي: ${grandTotal} ج.م*`;
+
+            const finalUrl = `https://wa.me/${STORE_PHONE}?text=${textMsg}`;
+            window.open(finalUrl, '_blank');
+        }
+
+        // تشغيل عرض المنتجات فور فتح الصفحة
+        loadProducts();
+    </script>
+</body>
+</html>
+
